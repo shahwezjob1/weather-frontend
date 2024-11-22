@@ -14,7 +14,7 @@ export const useWeatherHook = () => {
   useEffect(() => {
     if (cityName) {
       setLoading(true);
-      fetch(`${apiUrl}?city=${cityName}`)
+      fetch(`${apiUrl}/api/weather?city=${cityName}`)
         .then((response) => response.json())
         .then((data) => {
           if (!data?.message) {
