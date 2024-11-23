@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 const CACHE_NAME = "weather-app-cache-v1";
 const URLS_TO_CACHE = [
   "/",
@@ -20,7 +21,7 @@ const PROD_URLS_TO_CACHE = [
   "/index.html",
   "/api/weather",
 ];
-// eslint-disable-next-line no-restricted-globals
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -30,8 +31,11 @@ self.addEventListener("install", (event) => {
     })
   );
 });
+self.addEventListener("activate", (event) => {
+  self.clients.claim(); // Claim all active clients immediately
+  console.log("Service Worker activated");
+});
 
-// eslint-disable-next-line no-restricted-globals
 self.addEventListener("fetch", (event) => {
   if (!navigator.onLine) {
     if (event.request.url === "http://localhost:3000/static/js/main.chunk.js") {
