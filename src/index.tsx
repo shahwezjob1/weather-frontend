@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/service-worker-v1.js")
+      .register("/service-worker.js")
       .then((registration) => {
         console.log("Service Worker registered: ");
       })
