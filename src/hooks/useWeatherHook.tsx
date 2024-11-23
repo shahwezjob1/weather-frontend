@@ -15,7 +15,6 @@ export const useWeatherHook = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    console.log("18");
     if (cityName) {
       if (navigator.onLine) {
         setLoading(true);
