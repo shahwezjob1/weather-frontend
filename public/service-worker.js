@@ -9,11 +9,23 @@ const URLS_TO_CACHE = [
   "/index.html",
   "/api/weather",
 ];
-
+const PROD_URLS_TO_CACHE = [
+  "/",
+  "/static/js/main.5fb527da.js",
+  "/static/css/main.cd35a900.css",
+  "/manifest.json",
+  "/static/media/add_location.3a13adc98209014ee677b2933e4fd4e4.svg",
+  "/logo192.png",
+  "/favicon.ico",
+  "/index.html",
+  "/api/weather",
+];
 // eslint-disable-next-line no-restricted-globals
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
+      if (process.env.NODE_ENV === "production")
+        return cache.addAll(PROD_URLS_TO_CACHE);
       return cache.addAll(URLS_TO_CACHE);
     })
   );
