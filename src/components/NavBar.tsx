@@ -1,5 +1,5 @@
 import SearchBox from "./SearchBox";
-import { APP_NAME } from "../utils/constants";
+import { APP_NAME, OFFLINE_TEXT } from "../utils/constants";
 import useOnlineStatusHook from "../hooks/useOnlineStatusHook";
 import { MdSignalWifiStatusbarConnectedNoInternet4 } from "react-icons/md";
 interface NavBarProps {
@@ -20,13 +20,13 @@ const NavBar: React.FC<NavBarProps> = ({ handleChangeCity }) => {
           <SearchBox handleChangeCity={handleChangeCity} />
         </div>
       </div>
-      {!isOffline && (
+      {isOffline && (
         <div>
           <span
             className={`flex justify-center items-center gap-2 animate-slide-fade transition ease duration-700 transform bg-red-500 text-white text-center p-1 text-xs absolute  left-0 right-0 `}
           >
             <MdSignalWifiStatusbarConnectedNoInternet4 size={16} />
-            You are browsing Offline
+            {OFFLINE_TEXT}
           </span>
         </div>
       )}

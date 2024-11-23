@@ -17,3 +17,6 @@ export const ENTER_THREEE_LETTERS_ERROR_MSG =
 export const ENTER_STRING_ONLY_ERROR_MSG =
   "Please enter only letters and spaces.";
 export const APP_NAME = "PS Weather";
+export const OFFLINE_ERROR_MSG = "Check your network Connection";
+export const CACHE_KEY = "weatherData";
+export const OFFLINE_TEXT = "You are browsing Offline";

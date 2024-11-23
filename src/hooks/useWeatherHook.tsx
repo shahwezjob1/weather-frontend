@@ -4,7 +4,11 @@ import {
   updateLocalStorageWithWeatherData,
 } from "../utils/helper";
 import { CacheResponse, WeatherResponse } from "../utils/Types";
-import { DEFAULT_ERROR_MSG } from "../utils/constants";
+import {
+  CACHE_KEY,
+  DEFAULT_ERROR_MSG,
+  OFFLINE_ERROR_MSG,
+} from "../utils/constants";
 
 export const useWeatherHook = () => {
   const [cityName, setCityName] = useState<string>("");
@@ -36,7 +40,7 @@ export const useWeatherHook = () => {
             setLoading(false);
           });
       } else {
-        let cachedData = localStorage.getItem(`weatherData`);
+        let cachedData = localStorage.getItem(CACHE_KEY);
         const data: CacheResponse[] =
           (cachedData && JSON.parse(cachedData)) || {};
         const existingCityIndex = data.findIndex(
@@ -47,7 +51,7 @@ export const useWeatherHook = () => {
         if (existingCityIndex !== -1) {
           setAllWeatherData(data[existingCityIndex].data);
         } else {
-          notifyError("Check your network Connection");
+          notifyError(OFFLINE_ERROR_MSG);
         }
       }
     }
