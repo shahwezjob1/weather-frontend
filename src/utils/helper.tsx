@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { FaCloudSunRain, FaCloudBolt } from "react-icons/fa6";
 import { RiMistLine } from "react-icons/ri";
-import { WeatherIconProps } from "./Types";
+import { CacheResponse, WeatherIconProps, WeatherResponse } from "./Types";
 
 export const formatCurrentDateTime = () => {
   const now = new Date();
@@ -73,4 +73,32 @@ export const WeatherIcon: React.FC<WeatherIconProps> = ({ iconCode }) => {
   };
 
   return iconMapping[iconCode] || null;
+};
+export const updateLocalStorageWithWeatherData = (
+  cityName: String,
+  newData: WeatherResponse
+) => {
+  const weatherData: CacheResponse[] = JSON.parse(
+    localStorage.getItem("weatherData") || "[]"
+  );
+  const existingCityIndex = weatherData.findIndex(
+    (ele: CacheResponse) =>
+      ele.city === cityName || newData.city.name === ele.data.city.name
+  );
+
+  if (existingCityIndex !== -1) {
+    if (
+      weatherData[existingCityIndex].city.toUpperCase() !==
+      cityName.toUpperCase()
+    )
+      weatherData[existingCityIndex].city = cityName.toUpperCase();
+    weatherData[existingCityIndex].data = newData;
+  } else {
+    weatherData.push({ city: cityName.toUpperCase(), data: newData });
+  }
+
+  if (weatherData.length > 10) {
+    weatherData.shift();
+  }
+  localStorage.setItem("weatherData", JSON.stringify(weatherData));
 };

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import { notifyError } from "../utils/helper";
-import { WeatherResponse } from "../utils/Types";
+import {
+  notifyError,
+  updateLocalStorageWithWeatherData,
+} from "../utils/helper";
+import { CacheResponse, WeatherResponse } from "../utils/Types";
 import { DEFAULT_ERROR_MSG } from "../utils/constants";
 
 export const useWeatherHook = () => {
@@ -12,25 +15,42 @@ export const useWeatherHook = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
+    console.log("18");
     if (cityName) {
-      setLoading(true);
-      fetch(`${apiUrl}/api/weather?city=${cityName}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data?.message) {
-            setAllWeatherData(data);
-          }
-          if (data?.message) {
-            notifyError(data?.message);
-          }
-        })
-        .catch((error) => {
-          notifyError(DEFAULT_ERROR_MSG);
-          console.error("Error: ", error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      if (navigator.onLine) {
+        setLoading(true);
+        fetch(`${apiUrl}/api/weather?city=${cityName}`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (!data?.message) {
+              setAllWeatherData(data);
+              updateLocalStorageWithWeatherData(cityName, data);
+            }
+            if (data?.message) {
+              notifyError(data?.message);
+            }
+          })
+          .catch((error) => {
+            notifyError(DEFAULT_ERROR_MSG);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        let cachedData = localStorage.getItem(`weatherData`);
+        const data: CacheResponse[] =
+          (cachedData && JSON.parse(cachedData)) || {};
+        const existingCityIndex = data.findIndex(
+          (ele: CacheResponse) =>
+            ele.city.toUpperCase() === cityName.toUpperCase() ||
+            ele.data.city.name.toUpperCase() === cityName.toUpperCase()
+        );
+        if (existingCityIndex !== -1) {
+          setAllWeatherData(data[existingCityIndex].data);
+        } else {
+          notifyError("Check your network Connection");
+        }
+      }
     }
   }, [cityName, apiUrl]);
 

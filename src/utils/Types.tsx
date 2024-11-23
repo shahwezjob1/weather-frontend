@@ -35,3 +35,8 @@ export interface WeatherResponse {
 export type WeatherIconProps = {
   iconCode: number;
 };
+
+export interface CacheResponse {
+  city: String;
+  data: WeatherResponse;
+}
