@@ -12,6 +12,7 @@ const URLS_TO_CACHE = [
 ];
 const PROD_URLS_TO_CACHE = [
   "/",
+  "/index.html",
   "/static/js/main.5fb527da.js",
   "/static/css/main.cd35a900.css",
   "/manifest.json",
