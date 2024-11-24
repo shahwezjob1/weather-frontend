@@ -17,5 +17,4 @@ RUN npm run build
 # Expose the port that the app will be available on
 EXPOSE 3000
 
-# Start NGINX server
 CMD ["npm", "start"]
