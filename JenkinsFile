@@ -58,16 +58,16 @@ pipeline {
                             ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_IP} '
                                 container_id=\$(docker ps -q -f "publish=3000")
                                 if [ -n "\$container_id" ]; then
-                                    echo "Stopping and removing container running on port 80..."
+                                    echo "Stopping and removing container running on port 3000..."
                                     docker stop \$container_id
                                     docker rm \$container_id
                                 else
-                                    echo "No container running on port 80"
+                                    echo "No container running on port 3000"
                                 fi
                             '
                             # Pull the Docker image and run it on port 80
                             docker pull public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG} && \
-                            docker run -d --name weather-frontend -p 80:3000 public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG}
+                            docker run -d --name weather-front -p 80:3000 public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG}
                         """
                     }
                 }
