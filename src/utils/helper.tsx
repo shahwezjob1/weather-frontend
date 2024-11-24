@@ -40,36 +40,75 @@ export const notifyError = (errorMsg: string): void => {
   toast.error(formattedErrorMsg);
 };
 
-export const WeatherIcon: React.FC<WeatherIconProps> = ({ iconCode }) => {
+export const WeatherIcon: React.FC<WeatherIconProps> = ({
+  iconCode,
+  dataTestid,
+  className,
+}) => {
   const iconMapping: Record<number, JSX.Element> = {
-    1: <FaSun aria-label="Clear sky" className="text-sm sm:text-2xl" />,
-    2: (
-      <FaCloudSun aria-label="Partly cloudy" className="text-sm sm:text-2xl" />
+    1: (
+      <FaSun
+        aria-label="Clear sky"
+        className={className}
+        data-testid={dataTestid}
+      />
     ),
-    3: <FaCloud aria-label="Cloudy" className="text-sm sm:text-2xl" />,
-    13: <FaSnowflake aria-label="Snow" className="text-sm sm:text-2xl" />,
+    2: (
+      <FaCloudSun
+        aria-label="Partly cloudy"
+        className={className}
+        data-testid={dataTestid}
+      />
+    ),
+    3: (
+      <FaCloud
+        aria-label="Cloudy"
+        className={className}
+        data-testid={dataTestid}
+      />
+    ),
+    13: (
+      <FaSnowflake
+        aria-label="Snow"
+        className={className}
+        data-testid={dataTestid}
+      />
+    ),
     9: (
       <FaCloudShowersHeavy
         aria-label="Heavy rain"
-        className="text-sm sm:text-2xl"
+        className={className}
+        data-testid={dataTestid}
       />
     ),
     4: (
       <FaCloudMeatball
         aria-label="Partly cloudy with a chance of meatballs"
-        className="text-sm sm:text-2xl"
+        className={className}
+        data-testid={dataTestid}
       />
     ),
     10: (
       <FaCloudSunRain
         aria-label="Cloudy with rain"
-        className="text-sm sm:text-2xl"
+        className={className}
+        data-testid={dataTestid}
       />
     ),
     11: (
-      <FaCloudBolt aria-label="Thunderstorm" className="text-sm sm:text-2xl" />
+      <FaCloudBolt
+        aria-label="Thunderstorm"
+        className={className}
+        data-testid={dataTestid}
+      />
     ),
-    50: <RiMistLine aria-label="Mist" className="text-sm sm:text-2xl" />,
+    50: (
+      <RiMistLine
+        aria-label="Mist"
+        className={className}
+        data-testid={dataTestid}
+      />
+    ),
   };
 
   return iconMapping[iconCode] || null;

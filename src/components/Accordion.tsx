@@ -39,6 +39,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
       id={`accordion-content-${title}`}
       role="region"
       aria-labelledby={`accordion-button-${title}`}
+      aria-label={title}
       className={`px-4 py-2 flex flex-row gap-3 overflow-x-auto sm:overflow-x-hidden w-full text-gray-700 text-xs sm:text-sm border-x-2 rounded-b-md border-blue-400 border-dashed ${
         isOpen ? "block" : "hidden"
       }`}

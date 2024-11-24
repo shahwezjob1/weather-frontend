@@ -58,6 +58,8 @@ const SearchBox: React.FC<SearchProps> = ({ handleChangeCity }) => {
           onClick={handleSearchClick}
           aria-label="Search"
           tabIndex={0}
+          role="button"
+          data-testid="seach-icon-btn"
           className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
         />
       </div>

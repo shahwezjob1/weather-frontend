@@ -11,6 +11,7 @@ const NavBar: React.FC<NavBarProps> = ({ handleChangeCity }) => {
     <>
       <div
         id="NavBar"
+        data-testid="NavBar"
         className="bg-blue-400 py-5 flex justify-center px-3 z-50"
       >
         <div className="container flex justify-between  items-center w-full max-w-lg sm:max-w-2xl ">
@@ -25,7 +26,11 @@ const NavBar: React.FC<NavBarProps> = ({ handleChangeCity }) => {
           <span
             className={`flex justify-center items-center gap-2 animate-slide-fade transition ease duration-700 transform bg-red-500 text-white text-center p-1 text-xs absolute  left-0 right-0 `}
           >
-            <MdSignalWifiStatusbarConnectedNoInternet4 size={16} />
+            <MdSignalWifiStatusbarConnectedNoInternet4
+              role="img"
+              data-testid="ni-wifi-img"
+              size={16}
+            />
             {OFFLINE_TEXT}
           </span>
         </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import NotFoundSvg from "../assets/not_found.svg";
 
 const NotFound = () => {
