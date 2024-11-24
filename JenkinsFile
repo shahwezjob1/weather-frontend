@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools{
-        nodejs 'Node 18'
-    }
     environment {
         EC2_IP = '3.82.117.138' 
         EC2_USER = 'ubuntu'               
@@ -58,8 +55,7 @@ pipeline {
                 script {
                     sshagent(['cloud-user']) {
                         sh """
-                        ssh-keyscan -H ${EC2_IP} >> ~/.ssh/known_hosts
-                        ssh ${EC2_USER}@${EC2_IP} '
+                        ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_IP} '
                                 container_id=\$(docker ps -q -f "publish=80")
                                 if [ -n "\$container_id" ]; then
                                     echo "Stopping and removing container running on port 80..."
