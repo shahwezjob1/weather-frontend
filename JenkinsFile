@@ -55,7 +55,7 @@ pipeline {
                 script {
                     sshagent(['cloud-user']) {
                         sh """
-                        ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_IP} '
+                            ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_IP} '
                                 container_id=\$(docker ps -q -f "publish=80")
                                 if [ -n "\$container_id" ]; then
                                     echo "Stopping and removing container running on port 80..."
@@ -64,11 +64,10 @@ pipeline {
                                 else
                                     echo "No container running on port 80"
                                 fi
-                                '
+                            '
                             # Pull the Docker image and run it on port 80
                             docker pull public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG} && \
                             docker run -d --name weather-frontend -p 80:80 public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG}
-                        '
                         """
                     }
                 }
