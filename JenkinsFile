@@ -68,7 +68,7 @@ pipeline {
                             # Pull the Docker image and run it on port 3000
                             ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_IP} '
                                 docker pull public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG} && \
-                                docker run -d -p 3000:3000 public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG}
+                                docker run -d -p 3000:80 public.ecr.aws/y1y3z0j6/${ECR_REPO_NAME}:${IMAGE_TAG}
                             '
                         """
                     }

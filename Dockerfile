@@ -14,7 +14,14 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# Expose the port that the app will be available on
-EXPOSE 3000
+# Step 2: Use NGINX to serve the app
+FROM nginx:alpine
 
-CMD ["npm", "start"]
+# Copy the build output to NGINX's HTML folder
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose the port
+EXPOSE 80
+
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]
