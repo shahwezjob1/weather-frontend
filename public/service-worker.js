@@ -16,9 +16,15 @@ const PROD_URLS_TO_CACHE = [
   "/static/js/bundle.js",
   "/manifest.json",
   "/static/media/add_location.3a13adc98209014ee677b2933e4fd4e4.svg",
+  "/static/media/not_found.f7a1746b6c32d82a3f32c77fc778e768.svg",
   "/logo192.png",
   "/favicon.ico",
-  "/index.html",
+  "/static/css/main.cd35a900.css",
+  "/static/css/main.cd35a900.css.map",
+  "/static/js/453.d1bcbf08.chunk.js",
+  "/static/js/453.d1bcbf08.chunk.js",
+  "/static/js/main.6a073244.js",
+  "/static/js/main.6a073244.js.map",
   "/api/weather",
 ];
 
