@@ -1,6 +1,102 @@
-# Getting Started with Create React App
+# Weather Prediction App - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+
+The Weather Prediction App is a user-friendly, responsive platform that provides a 3-day weather forecast for any city. The app is built using React with TypeScript, styled with Tailwind CSS, and optimized for performance and usability. It includes features such as weather-specific safety advice and caching functionality to improve user experience.
+
+---
+
+## Features
+
+- **3-Day Weather Forecast**: Displays temperature, weather conditions, and safety advice.
+- **Caching with LocalStorage**: Stores weather data to enable offline search.
+- **Real-time Updates**: Fetches the latest weather data from the backend service.
+- **Interactive Visuals**: Uses `react-icons` for visually appealing weather representations.
+- **Error Handling**: Provides clear notifications for network issues or invalid input.
+- **Responsive Design**: Ensures a seamless experience across all devices.
+
+---
+
+## Design and Implementation Approach
+
+### 1. **Frontend Architecture**
+
+The app uses a modular component-based structure. Key elements include:
+
+- **Components**: Reusable UI components such as `WeatherCard`, `AdviceBox`, and `SearchBar`.
+- **State Management**: Uses React's `useState` and `useEffect` hooks to manage weather data and API interactions.
+- **Helper Functions**: Implements utilities for formatting dates, managing local storage, and mapping weather data to icons.
+- **Styling**: Tailwind CSS ensures a clean, responsive, and consistent design.
+
+### 2. **Backend Integration**
+
+The frontend communicates with the Spring Boot backend on `api.kundanseal.site` through REST API endpoints. Data is processed and displayed dynamically based on user input.
+
+### 3. **Caching Mechanism**
+
+Weather data is cached in localStorage to continue search experience in offline mode and improve user experience. If cached data is available and valid, it is used instead of making a new API request only when the user is offline.
+
+### 4. **Testing**
+
+Jest is used for unit testing React components to ensure robustness and prevent regressions.
+
+---
+
+## Sequence Diagram
+
+Below is the sequence diagram illustrating the user interaction flow:
+
+- User enters a city name in the search bar.
+- The app checks localStorage for cached data.
+  - If valid cached data exists, it is displayed.
+  - Otherwise, a request is made to the backend API.
+- The response is processed, cached, and rendered in the UI.
+
+![Sequence Diagram](./assets/diagram.png)
+
+---
+
+## Design Patterns Used
+
+### 1. **Singleton Pattern**
+
+Used for managing a single instance of services like API requests and toast notifications.
+
+### 2. **Observer Pattern**
+
+React hooks (`useEffect`) observe state changes and trigger updates in the UI automatically.
+
+### 3. **Factory Pattern**
+
+Helper functions like `getWeatherIcon` act as factories for producing specific icons based on input weather conditions.
+
+### 4. **Modular Design**
+
+Components are designed as self-contained, reusable modules, promoting scalability and maintainability.
+
+---
+
+## Setup and Deployment
+
+### Prerequisites
+
+- Node.js installed.
+- Docker (optional, for containerized deployment).
+
+### Steps to Run Locally
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/weather-frontend.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
 ## Available Scripts
 
@@ -38,9 +134,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
