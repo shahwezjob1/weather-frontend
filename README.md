@@ -52,7 +52,7 @@ Below is the sequence diagram illustrating the user interaction flow:
   - Otherwise, a request is made to the backend API.
 - The response is processed, cached, and rendered in the UI.
 
-![Sequence Diagram](./assets/diagram.png)
+![Sequence Diagram](./assets/diagram.svg)
 
 ---
 
