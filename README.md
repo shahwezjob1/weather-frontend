@@ -46,12 +46,6 @@ Jest is used for unit testing React components to ensure robustness and prevent 
 
 Below is the sequence diagram illustrating the user interaction flow:
 
-- User enters a city name in the search bar.
-- The app checks localStorage for cached data.
-  - If valid cached data exists, it is displayed.
-  - Otherwise, a request is made to the backend API.
-- The response is processed, cached, and rendered in the UI.
-
 ![Sequence Diagram](./src/assets/diagram.svg)
 
 ---
