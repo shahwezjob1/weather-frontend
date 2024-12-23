@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        EC2_IP = '54.173.235.131' 
+        EC2_IP = '172.31.94.244' 
         EC2_USER = 'ubuntu'               
         IMAGE_TAG = 'weather-frontend-latest'
         ECR_REPO_NAME = 'weather/frontend'
